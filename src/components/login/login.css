@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    /* background-color: white ; */
+}
+
+.loginBackground {
+    margin-top: 20px;
+    background-color: white !important;
+}
+
+.logcss {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+
+.loginbg {
+    background-color: cadetblue !important;
+}
+
+.form-group {
+    line-height: 70px;
+    background-color: white !important;
+}
+
+.custom-input {
+    width: 90%;
+}
+
+.errorDetail {
+    font-weight: bold;
+    font-style: monospace;
+}
+
+@media (max-width:576px) {
+    .custom-input {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+}

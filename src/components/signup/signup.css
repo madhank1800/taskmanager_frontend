@@ -1,0 +1,120 @@
+   .errorMsg{
+    color: red;
+}
+
+#passid{
+    color:green;
+}
+.showPasswordClass{
+    background-color: transparent;
+     /* margin-left: 395px;  */
+     align-items: center;
+border-radius: 5px;
+border-color: cadetblue;
+border-bottom-color: cadetblue !important;
+}
+.showPasswordClass:hover{
+    cursor:pointer;
+    color:blue;
+}
+.divtagChild{
+    /* //border:none;
+
+    outline: none; */
+height: 40px;
+    /* box-shadow: none; */
+}
+.divtagChild:focus {
+    /* border: none;
+
+    outline: none; */
+    box-shadow: none;
+}
+
+/* .divtagPassword{
+    height:5px!important;
+} */
+
+.form-control {
+    outline: none;
+    border: none;
+    box-shadow: none;
+        /* background-color: rgb(var(--ig-secondary-background)); */
+        border-radius: 0px;
+}
+.form-control:focus {
+    box-shadow: none;
+    outline-color: transparent;
+    border-radius: 0px;
+}
+
+.inputTagClass{
+    /* outline: none;
+        border: none; */
+    background-color: transparent;
+    border-color: cadetblue !important;
+
+   
+      
+}
+
+.btnclass{
+    background-color: transparent;
+justify-content: center;
+/* margin-left:250px;  */
+/* width:450px; */
+cursor: pointer;
+} 
+.signbtnclass{
+    background-color:cadetblue !important;
+    justify-content: center;
+      align-items: center;
+        /* width: 450px; */
+        cursor: pointer;
+        height:40px;
+        width:90%;
+        /* border-radius: 5px; */
+}
+.signbtnclass1:hover {
+    background-color:rgb(132, 122, 138) !important;
+    /* justify-content: center;
+    align-items: center;
+    /* width: 450px; */
+    /* cursor: pointer;
+    height: 40px; */ 
+  border-radius: 5px;
+}
+
+#success{
+    color:green
+}
+#userExisted {
+    color: red;
+  
+}
+
+.userExistClass{
+margin-right: 10px;
+}
+
+.signupSuccessClass{
+    margin-right: 10px;
+}
+
+
+
+.custominput1{
+    width:90%;
+    border-radius: 5px;
+}
+
+.loginTag{
+width: 90%;
+    border-radius: 5px;
+
+}
+
+.errorDetail {
+    font-weight: bold;
+    font-style: monospace;
+}
