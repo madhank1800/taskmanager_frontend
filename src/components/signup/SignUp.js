@@ -321,7 +321,7 @@ const Signup = () => {
     const submitDetails = signupDetails;
     try {
       const response = axios.post(
-        "http://localhost:8080/user/register",
+        "https://taskmanager-backend-bdy0.onrender.com/user/register",
         submitDetails
       );
       response.then((data) => {
@@ -463,7 +463,6 @@ const Signup = () => {
                   id="myEmailInput"
                   // pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                   onBlur={validateData}
-                  
                   autoComplete="off"
                 />
                 {/* {signinerror.emailError && <p>enter correct email id</p>} */}
@@ -532,7 +531,6 @@ const Signup = () => {
                   onBlur={validateData}
                   // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                   autoComplete="off"
-                  
                 />
                 <button
                   className="input-group-append d-flex justify-content-start divtagChild  showPasswordClass  inputTagClass  "
@@ -540,7 +538,7 @@ const Signup = () => {
                 >
                   {showPass}
                 </button>
-               
+
                 {signinerror.passwordError && (
                   <div
                     className="
@@ -569,7 +567,6 @@ const Signup = () => {
                   onChange={changeHandler}
                   onBlur={validateData}
                   autoComplete="off"
-                  
                 />
                 {/* {signinerror.confirmPasswordSuccess && (
                 <p id="passid">password mathced</p>

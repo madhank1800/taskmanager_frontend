@@ -11,7 +11,7 @@ const Home = () => {
 
   const fectData = () => {
     axios
-      .get(`http://localhost:8080/tasks/getAllTasks`)
+      .get(`https://taskmanager-backend-bdy0.onrender.com/tasks/getAllTasks`)
       .then((data) => {
         // console.log(data);
         setData(data.data);
@@ -23,31 +23,34 @@ const Home = () => {
     fectData();
   }, []);
   const handleEdit = (id) => {
-    console.log(id);
     axios
-      .put(`http://localhost:8080/tasks/updateTask/${id}`, {
-        status: "completed",
-      })
+      .put(
+        `https://taskmanager-backend-bdy0.onrender.com/tasks/updateTask/${id}`,
+        {
+          status: "completed",
+        }
+      )
       .then((data) => {
         console.log(data);
         window.location.reload();
       });
   };
   const handleDelete = (id) => {
-    console.log(id);
     axios
-      .delete(`http://localhost:8080/tasks/deleteTask/${id}`, {
-        status: "completed",
-      })
+      .delete(
+        `https://taskmanager-backend-bdy0.onrender.com/tasks/deleteTask/${id}`,
+        {
+          status: "completed",
+        }
+      )
       .then((data) => {
-        console.log(data);
         window.location.reload();
       });
   };
 
   const handleOpen = (item) => {
     console.log(item);
-    setOpen(true)
+    setOpen(true);
     setitem(item);
   };
   return (
@@ -218,7 +221,7 @@ const Home = () => {
         </div>
       </div>
       {/* edit  */}
-       <EditTask open={open} item={item} />
+      <EditTask open={open} item={item} />
     </>
   );
 };

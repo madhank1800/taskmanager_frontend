@@ -3,23 +3,24 @@ import axios from "axios";
 import "./home.css";
 
 const AddTask = () => {
-    const [form, setForm] = useState([])
-  const  handleChange = (evt) => {
-        setForm({...form,[evt.target.name]:evt.target.value})
-    }
-   const postData=()=>{
-       axios.post(`http://localhost:8080/tasks/addtask`, form).then(res => {
-           if (res.status === 201) {
-               window.location.reload();
-            //    navigate("/home")
-           }
-        });
-    }
-    const handleSubmit = async (event) => {
-            event.preventDefault();
-        await postData();
-        
-    }
+  const [form, setForm] = useState([]);
+  const handleChange = (evt) => {
+    setForm({ ...form, [evt.target.name]: evt.target.value });
+  };
+  const postData = () => {
+    axios
+      .post(`https://taskmanager-backend-bdy0.onrender.com/tasks/addtask`, form)
+      .then((res) => {
+        if (res.status === 201) {
+          window.location.reload();
+          //    navigate("/home")
+        }
+      });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await postData();
+  };
   return (
     <>
       <button
@@ -31,7 +32,7 @@ const AddTask = () => {
         <i className="bi bi-plus-circle"></i>
         Add New Task
       </button>
-     
+
       <div
         className="modal fade"
         id="addTask"
@@ -89,7 +90,11 @@ const AddTask = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleSubmit}
+              >
                 Save changes
               </button>
             </div>
