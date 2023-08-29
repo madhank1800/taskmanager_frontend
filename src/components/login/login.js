@@ -49,7 +49,7 @@ const Login = () => {
         .then((data) => {
           localStorage.setItem("token", data.data.token);
           localStorage.setItem("name", data.data.name);
-          console.log("dta", data.data.name);
+          // console.log("dta", data.data.name);
           logSuccess(data.data.name);
         })
         .catch((err) => {
@@ -57,7 +57,7 @@ const Login = () => {
           navigate("/");
         });
     } catch (err) {
-      console.log("err", err);
+      // console.log("err", err);
     }
   };
   return (
