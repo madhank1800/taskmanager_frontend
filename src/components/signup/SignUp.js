@@ -213,7 +213,7 @@ const Signup = () => {
         submitDetails
       );
       response.then((data) => {
-       // console.log("data", data);
+        //console.log("data", data);
         //console.log("data", data.data);
         const msg = data.data;
         if (msg === "user already existed") {
