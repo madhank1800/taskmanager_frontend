@@ -12,8 +12,8 @@ const AddTask = () => {
       .post(`https://taskmanager-backend-bdy0.onrender.com/tasks/addtask`, form)
       .then((res) => {
         if (res.status === 201) {
-          window.location.reload();
-          //    navigate("/home")
+         // window.location.reload();
+             navigate("/home")
         }
       });
   };
