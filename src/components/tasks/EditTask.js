@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const EditTask = ({ open, item }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: item?.title || "",
     description: item?.description || "",
@@ -26,8 +27,8 @@ const EditTask = ({ open, item }) => {
       )
       .then((res) => {
         if (res.status === 200) {
-          window.location.reload();
-          //    navigate("/home")
+         // window.location.reload();
+              navigate("/home")
         }
       });
   };
@@ -101,6 +102,7 @@ const EditTask = ({ open, item }) => {
               <button
                 type="button"
                 className="btn btn-primary"
+                data-bs-dismiss="modal"
                 onClick={() => {
                   handleSubmit(item._id);
                 }}

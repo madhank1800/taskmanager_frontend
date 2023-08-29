@@ -21,7 +21,7 @@ const Home = () => {
 
   useEffect(() => {
     fectData();
-  }, []);
+  }, [data]);
   const handleEdit = (id) => {
     axios
       .put(
@@ -32,7 +32,7 @@ const Home = () => {
       )
       .then((data) => {
         console.log(data);
-        window.location.reload();
+        //window.location.reload();
       });
   };
   const handleDelete = (id) => {

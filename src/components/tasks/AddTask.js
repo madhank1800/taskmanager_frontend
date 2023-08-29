@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./home.css";
+//import { useNavigate } from "react-router-dom";
 
 const AddTask = () => {
   const [form, setForm] = useState([]);
+    //const navigate = useNavigate();
   const handleChange = (evt) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
@@ -13,7 +15,7 @@ const AddTask = () => {
       .then((res) => {
         if (res.status === 201) {
          // window.location.reload();
-             navigate("/home")
+           // navigate("/home")
         }
       });
   };
@@ -94,6 +96,7 @@ const AddTask = () => {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSubmit}
+                data-bs-dismiss="modal"
               >
                 Save changes
               </button>

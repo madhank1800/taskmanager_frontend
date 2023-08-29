@@ -55,9 +55,9 @@ const Signup = () => {
     let divtagChild = divtagPassword.querySelector(".divtagChild");
     //console.log(divtagPassword);
     //console.log("divtagChild", divtagChild);
-    let inputPasswordValue = divtagChild.value;
+   // let inputPasswordValue = divtagChild.value;
     //console.log(inputPasswordValue);
-    let inputValuePasswordLength = divtagChild.length;
+   // let inputValuePasswordLength = divtagChild.length;
    // console.log("inputValuePasswordLength ", inputValuePasswordLength);
     // if (inputValuePasswordLength >= 1) {
     if (divtagChild.type === "password") {
