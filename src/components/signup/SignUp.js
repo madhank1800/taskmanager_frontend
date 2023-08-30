@@ -24,7 +24,9 @@ const Signup = () => {
     confirmPasswordSuccess: false,
   });
   const navigate = useNavigate();
-  const [showPass, setShowPass] = useState("show");
+  //const [showPass, setShowPass] = useState("show");
+
+
   // const [showPassError, setShowPassError] = useState('');
 
   const [isDisabledSignUpTag, SetDisabledSignUpTag] = useState(true);
@@ -36,6 +38,9 @@ const Signup = () => {
   const [isUserExisted, setUserExisted] = useState(false);
   const [isUserExistedMsg, setUserExistedMsg] = useState("");
 
+
+
+ const [showPasswordData, setShowPassword] = useState(false);
   const userExistedMethod = (data) => {
     setUserExistedMsg(data);
     setUserExisted(true);
@@ -49,25 +54,9 @@ const Signup = () => {
   };
 
   function showPassword() {
-    //let divtagPassword = document.getElementsByClassName('divtagPassword')[0];
-    let divtagPassword = document.querySelector(".divtagPassword");
-    // console.log(divtagPassword.getElementsByTagName('input'));
-    let divtagChild = divtagPassword.querySelector(".divtagChild");
-    //console.log(divtagPassword);
-    //console.log("divtagChild", divtagChild);
-   // let inputPasswordValue = divtagChild.value;
-    //console.log(inputPasswordValue);
-   // let inputValuePasswordLength = divtagChild.length;
-   // console.log("inputValuePasswordLength ", inputValuePasswordLength);
-    // if (inputValuePasswordLength >= 1) {
-    if (divtagChild.type === "password") {
-      divtagChild.type = "text";
-      setShowPass("Hide");
-    } else {
-      divtagChild.type = "password";
-      setShowPass("show");
-      // setShowPassError("please enter values");
-    }
+   
+    
+    setShowPassword(!showPasswordData);
   }
   function changeHandler(event) {
     let name = event.target.name;
@@ -204,30 +193,35 @@ const Signup = () => {
 
   
 
-  const submitHandler = (event) => {
+  const submitHandler =async (event) => {
     event.preventDefault();
     const submitDetails = signupDetails;
     try {
-      const response = axios.post(
+      const response =await axios.post(
         "https://taskmanager-backend-bdy0.onrender.com/user/register",
         submitDetails
       );
-      response.then((data) => {
-        //console.log("data", data);
+      console.log("response", response);
+      // response.then((data) => {
+       // console.log("data", response.data);
         //console.log("data", data.data);
-        const msg = data.data;
+      //const msg = data.data;
+      const msg =response.data;
         if (msg === "user already existed") {
           userExistedMethod(msg);
         } else {
-          SignUpSuccess(data.data);
+         // SignUpSuccess(data.data);
+          SignUpSuccess(msg);
         }
-      });
-    } catch (err) {
-      throw new Error("server error");
+       //})
+    }
+    catch (err) {
+     // throw new Error("server error");
+      console.log("error", err);
     }
     //console.log("submitdetails", submitDetails);
     //console.log("submitdetails", submitDetails);
-  };
+  }
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">
@@ -401,45 +395,49 @@ const Signup = () => {
                   </p>
                 )}
               </>
-
-              <div
-                //className="mb-4 input-group divtagPassword d-flex flex-row justify-content-betweenborder "
-                className="mb-4 input-group divtagPassword border-1 border-primary "
-              >
-                <input
-                  type="password"
-                  // className="form-control divtagChild border-0"
-                  className=" form-control divtagChild  inputTagClass border-1  "
-                  placeholder="Enter password"
-                  name="password"
-                  data-firstnameerror="passwordError"
-                  value={signupDetails.password}
-                  onChange={changeHandler}
-                  id="myPasswordInput"
-                  onBlur={validateData}
-                  // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                  autoComplete="off"
-                />
-                <button
-                  className="input-group-append d-flex justify-content-start divtagChild  showPasswordClass  inputTagClass  "
-                  onClick={showPassword}
+              
+                <div
+                  //className="mb-4 input-group divtagPassword d-flex flex-row justify-content-betweenborder "
+                  className="mb-4 input-group divtagPassword border-1 border-primary "
                 >
-                  {showPass}
-                </button>
-
-                {signinerror.passwordError && (
-                  <div
-                    className="
+                  <input
+                    type={showPasswordData ? "text" : "password"}
+                    // className="form-control divtagChild border-0"
+                    className=" form-control divtagChild  inputTagClass border-1  "
+                    placeholder="Enter password"
+                    name="password"
+                    data-firstnameerror="passwordError"
+                    value={signupDetails.password}
+                    onChange={changeHandler}
+                    id="myPasswordInput"
+                    onBlur={validateData}
+                    // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    autoComplete="off"
+                  />
+                  <button
+                    className="input-group-append d-flex justify-content-start divtagChild  showPasswordClass  inputTagClass  "
+                    onClick={showPassword}
+                  >
+                    {/* {showPass} */}
+                    {showPasswordData ? "Hide" : "Show"}
+                  </button>
+              
+              </div>
+              
+                    {signinerror.passwordError && (
+                      <div
+                        className="
                        errorMsg
                     text-danger
                     errorDetail
                     justify-content-start
                     align-items-start"
-                  >
-                    password should be alphanumeric and special charecters
-                  </div>
-                )}
-              </div>
+                      >
+                        password should be alphanumeric
+                      </div>
+                    )}
+               
+              
               <></>
 
               <div
@@ -463,7 +461,7 @@ const Signup = () => {
               </div>
               <>
                 {signinerror.confirmPasswordSuccess && (
-                  <p id="passid">password mathced</p>
+                  <p id="passid">password matched</p>
                 )}
                 {signinerror.confirmPasswordError && (
                   <p
@@ -474,7 +472,7 @@ const Signup = () => {
                     justify-content-start
                     align-items-start"
                   >
-                    password not mathced
+                    password not matched
                   </p>
                 )}
               </>
@@ -485,26 +483,28 @@ const Signup = () => {
               </button>
             </div> */}
 
-              <div>
-                {isDisabledSignUpTag ? (
-                  <div className="mb-4 d-flex form-control inputTagClass signbtnclass  ">
-                    {/* <span onClick={submitHandler} className=" btnclass ml-5">
+              {
+                <div>
+                  {isDisabledSignUpTag ? (
+                    <div className="mb-4 d-flex form-control inputTagClass signbtnclass  ">
+                      {/* <span onClick={submitHandler} className=" btnclass ml-5">
                 Signup
               </span> */}
-                    signup
-                  </div>
-                ) : (
-                  <div
-                    onClick={submitHandler}
-                    className="mb-4 form-control  d-flex  border border-primary signbtnclass signbtnclass1 "
-                  >
-                    {/* <span onClick={submitHandler} className=" btnclass ml-5">
+                      signup
+                    </div>
+                  ) : (
+                    <div
+                      onClick={submitHandler}
+                      className="mb-4 form-control  d-flex  border border-primary signbtnclass signbtnclass1 "
+                    >
+                      {/* <span onClick={submitHandler} className=" btnclass ml-5">
                 Signup
               </span> */}
-                    signup
-                  </div>
-                )}
-              </div>
+                      signup
+                    </div>
+                  )}
+                </div>
+              }
               <>
                 {isSignedUpSuccess && (
                   <p id="success">
