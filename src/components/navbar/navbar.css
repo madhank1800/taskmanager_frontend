@@ -5,3 +5,11 @@
         background-color: #e3f2fd !important;
 
 }
+
+@media only screen and (max-width: 767px) {
+
+.navBarClass{
+width: 100% !important;
+}
+  
+}

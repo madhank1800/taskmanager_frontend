@@ -97,7 +97,7 @@ const Home = () => {
           <div className="container custom">
             <AddTask />
 
-            <table className="table ">
+            <table className="table tableColorClass">
               <thead className="table-primary">
                 <tr>
                   <th scope="row">Sno.</th>

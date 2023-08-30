@@ -9,8 +9,8 @@ const NavBar = () => {
   };
   return (
     <>
-      <nav className="navbar bg-body-tertiary">
-        <div className="container-fluid">
+      <nav className="navbar bg-body-tertiary ">
+        <div className="container-fluid navBarClass">
           <a className="navbar-brand " href="/home">
             <i className="bi bi-book-half"></i> Task Manager
           </a>
