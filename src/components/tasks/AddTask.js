@@ -98,7 +98,7 @@ const AddTask = () => {
                 onClick={handleSubmit}
                 data-bs-dismiss="modal"
               >
-                Save changes
+                Save 
               </button>
             </div>
           </div>

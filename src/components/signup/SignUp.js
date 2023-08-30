@@ -53,8 +53,8 @@ const Signup = () => {
     setUserExisted(false);
   };
 
-  function showPassword() {
-   
+  function showPassword(event) {
+    event.preventDefault();
     
     setShowPassword(!showPasswordData);
   }
@@ -156,7 +156,7 @@ const Signup = () => {
         setSignInError((previous) => {
           return { ...previous, confirmPasswordError: false };
         });
-        console.log("signuperror7", signinerror);
+       // console.log("signuperror7", signinerror);
       } else {
         setSignInError((previous) => {
           return { ...previous, confirmPasswordError: true };
@@ -202,22 +202,47 @@ const Signup = () => {
         submitDetails
       );
       console.log("response", response);
-      // response.then((data) => {
+      //  response.then((data) => {
        // console.log("data", response.data);
         //console.log("data", data.data);
-      //const msg = data.data;
-      const msg =response.data;
-        if (msg === "user already existed") {
-          userExistedMethod(msg);
-        } else {
-         // SignUpSuccess(data.data);
-          SignUpSuccess(msg);
-        }
-       //})
+    //  const msg = data.data;
+       let msg =response.data;
+      
+      
+       if (msg==="signed up succesfully") {
+        // userExistedMethod(msg);
+           SignUpSuccess("signed up succesfully");
+       }
+      //  else {
+      //    SignUpSuccess(data.data);
+      //    //SignUpSuccess(msg);
+      //  }
+      
+      if (msg==="user already existed") {
+        // userExistedMethod(msg);
+        userExistedMethod("user already existed");
+      }
+        
+      
+      
+      // if (msg === "signed up succesfully") {
+      //     userExistedMethod(msg);
+      //   } else {
+      //     SignUpSuccess(data.data);
+      //     //SignUpSuccess(msg);
+      //   }
+      //  })
     }
     catch (err) {
      // throw new Error("server error");
-      console.log("error", err);
+      //console.log("error", err);
+
+
+// if ("user already existed") {
+//  // userExistedMethod(msg);
+//   userExistedMethod("user already existed");
+// }
+
     }
     //console.log("submitdetails", submitDetails);
     //console.log("submitdetails", submitDetails);
@@ -447,7 +472,7 @@ const Signup = () => {
                   type="password"
                   // className="form-control"
                   className="form-control inputTagClass justify-content-end mb-4 "
-                  placeholder="confirm password"
+                  placeholder="Confirm password"
                   name="confirmPassword"
                   value={signupDetails.confirmPassword}
                   onChange={changeHandler}

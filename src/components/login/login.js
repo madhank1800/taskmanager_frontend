@@ -126,7 +126,7 @@ const Login = () => {
               className="form-control mb-5 btn btn--block btn--solid btn--med loginbg"
               type="submit"
               // name="commit"
-              value="forget password"
+              value="forgot password"
               onClick={() => {
                 navigate("/ForgetPassword");
               }}
