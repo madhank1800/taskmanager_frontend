@@ -14,6 +14,11 @@ const Login = () => {
   const [error, setError] = useState(false);
 
   const [isLogMsg, setLogMsg] = useState("");
+  const [isDisabledLoginTag, SetDisabledLoginTag] = useState(false);
+
+  
+   
+
 
   function usernameHandler(event) {
     const name = event.target.name;
@@ -23,6 +28,13 @@ const Login = () => {
     setUserDetails((previous) => {
       return { ...previous, [name]: value };
     });
+
+
+
+    if (userDetails.email !== "" && userDetails.password !== "") {
+      SetDisabledLoginTag(true);
+    }
+
     setLogDetailsErrorMsg(false);
   }
 
@@ -34,7 +46,14 @@ const Login = () => {
     navigate("/home");
   };
 
-  const submitHandler = (event) => {
+ 
+  
+
+ 
+
+
+
+   const submitHandler = (event) => {
     event.preventDefault();
 
     const logindetailsList = userDetails;
@@ -44,20 +63,25 @@ const Login = () => {
         "https://taskmanager-backend-bdy0.onrender.com/user/login",
         logindetailsList
       );
-
-      responses
-        .then((data) => {
-          localStorage.setItem("token", data.data.token);
-          localStorage.setItem("name", data.data.name);
-          // console.log("dta", data.data.name);
-          logSuccess(data.data.name);
-        })
-        .catch((err) => {
-          setError(true);
-          navigate("/");
-        });
+      console.log("response", responses);
+    
+      
+        responses
+          .then((data) => {
+            localStorage.setItem("token", data.data.token);
+            localStorage.setItem("name", data.data.name);
+            // console.log("dta", data.data.name);
+            logSuccess(data.data.name);
+          })
+          .catch((err) => {
+            //console.log("err", err);
+            setError(true);
+            navigate("/");
+          });
+      
     } catch (err) {
-      // console.log("err", err);
+      //console.log("err", err);
+       
     }
   };
   return (
@@ -69,7 +93,7 @@ const Login = () => {
       >
         <h3>Login form</h3>
         {error && (
-          <h5 class="alert alert-danger" role="alert">
+          <h5 className="alert alert-danger" role="alert">
             incorrect details
           </h5>
         )}
@@ -93,7 +117,6 @@ const Login = () => {
                 aria-describedby="emailHelp"
               />
             </div>
-
             <div>
               <input
                 className="form-control "
@@ -109,15 +132,30 @@ const Login = () => {
                 <span className=" text-danger errorDetail">{isLogMsg}</span>
               )}
             </div>
-            <div>
-              <input
-                className="form-control mt-5 mb-5 btn btn--block btn--solid btn--med loginbg"
-                type="submit"
-                // name="commit"
-                value="Login Now"
-                onClick={submitHandler}
-              />
-            </div>
+            {isDisabledLoginTag ? (
+              <div>
+                <input
+                  className="form-control mt-5 mb-5 btn btn--block btn--solid btn--med loginbg"
+                  type="submit"
+                  // name="commit"
+                  value="Login Now"
+                  onClick={submitHandler}
+                />
+              </div>
+           ) : ( 
+
+               <div>
+                <input
+                  className="form-control mt-5 mb-5 btn btn--block btn--solid btn--med loginbg"
+                  type="submit"
+                  // name="commit"
+                  value="Login Now"
+                  //onClick={submitHandler}
+                    disabled
+                />
+            </div> 
+            
+             )}
           </div>
         </form>
         <div className="d-sm-flex flex-row flex-sm-col justify-content-sm-center align-items-sm-center">
