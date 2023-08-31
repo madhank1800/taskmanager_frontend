@@ -257,6 +257,14 @@ const Signup = () => {
           rounded "
         >
           <h3>signup form</h3>
+          <>
+            {isSignedUpSuccess && (
+              <p id="success" className="alert alert-success" role="alert">
+                <i className="bi bi-check-circle-fill signupSuccessClass"></i>
+                {isSignUpMsg}
+              </p>
+            )}
+          </>
           <form
             // className="card w-50"
             className="d-flex flex-column custominput1"
@@ -420,49 +428,47 @@ const Signup = () => {
                   </p>
                 )}
               </>
-              
-                <div
-                  //className="mb-4 input-group divtagPassword d-flex flex-row justify-content-betweenborder "
-                  className="mb-4 input-group divtagPassword border-1 border-primary "
+
+              <div
+                //className="mb-4 input-group divtagPassword d-flex flex-row justify-content-betweenborder "
+                className="mb-4 input-group divtagPassword border-1 border-primary "
+              >
+                <input
+                  type={showPasswordData ? "text" : "password"}
+                  // className="form-control divtagChild border-0"
+                  className=" form-control divtagChild  inputTagClass border-1  "
+                  placeholder="Enter password"
+                  name="password"
+                  data-firstnameerror="passwordError"
+                  value={signupDetails.password}
+                  onChange={changeHandler}
+                  id="myPasswordInput"
+                  onBlur={validateData}
+                  // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                  autoComplete="off"
+                />
+                <button
+                  className="input-group-append d-flex justify-content-start divtagChild  showPasswordClass  inputTagClass  "
+                  onClick={showPassword}
                 >
-                  <input
-                    type={showPasswordData ? "text" : "password"}
-                    // className="form-control divtagChild border-0"
-                    className=" form-control divtagChild  inputTagClass border-1  "
-                    placeholder="Enter password"
-                    name="password"
-                    data-firstnameerror="passwordError"
-                    value={signupDetails.password}
-                    onChange={changeHandler}
-                    id="myPasswordInput"
-                    onBlur={validateData}
-                    // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                    autoComplete="off"
-                  />
-                  <button
-                    className="input-group-append d-flex justify-content-start divtagChild  showPasswordClass  inputTagClass  "
-                    onClick={showPassword}
-                  >
-                    {/* {showPass} */}
-                    {showPasswordData ? "Hide" : "Show"}
-                  </button>
-              
+                  {/* {showPass} */}
+                  {showPasswordData ? "Hide" : "Show"}
+                </button>
               </div>
-              
-                    {signinerror.passwordError && (
-                      <div
-                        className="
+
+              {signinerror.passwordError && (
+                <div
+                  className="
                        errorMsg
                     text-danger
                     errorDetail
                     justify-content-start
                     align-items-start"
-                      >
-                        password should be alphanumeric
-                      </div>
-                    )}
-               
-              
+                >
+                  password should be alphanumeric
+                </div>
+              )}
+
               <></>
 
               <div
@@ -530,14 +536,19 @@ const Signup = () => {
                   )}
                 </div>
               }
-              <>
+
+
+              {/* <>
                 {isSignedUpSuccess && (
                   <p id="success">
                     <i className="bi bi-check-circle-fill signupSuccessClass"></i>
                     {isSignUpMsg}
                   </p>
                 )}
-              </>
+              </> */}
+
+
+
               <>
                 {isUserExisted && (
                   <p id="userExisted">
